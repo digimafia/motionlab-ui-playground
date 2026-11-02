@@ -25,12 +25,11 @@ export default function App(){
  const [query,setQuery]=useState('')
  const [mobileMenu,setMobileMenu]=useState(false)
  const [preview,setPreview]=useState<'auto'|'mobile'|'desktop'>('auto')
- const [theme,setTheme]=useState<'dark'|'light'>('dark')
  const results=useMemo(()=>searchable.flatMap(s=>s.items.filter(item=>item.toLowerCase().includes(query.toLowerCase())||names[s.category].toLowerCase().includes(query.toLowerCase())).map(item=>({item,category:s.category}))),[query])
  useEffect(()=>{function onKey(e:KeyboardEvent){if(e.key==='Escape'){setQuery('');setMobileMenu(false)}}window.addEventListener('keydown',onKey);return()=>window.removeEventListener('keydown',onKey)},[])
  function navigate(next:Category){setActive(next);setQuery('');setMobileMenu(false);window.scrollTo({top:0,behavior:'smooth'})}
  const nav=(id:Category,label:string,Icon:typeof Home,count?:number)=><button key={id} onClick={()=>navigate(id)} aria-current={active===id?'page':undefined} className={'w-full flex items-center gap-3 rounded-xl px-3 py-3 text-sm transition-colors '+(active===id?'bg-indigo-500/20 text-indigo-200 ring-1 ring-indigo-500/40':'text-slate-400 hover:bg-white/5 hover:text-white')}><Icon size={19}/><span className="font-medium">{label}</span>{count!==undefined&&<span className="ml-auto text-xs rounded-md bg-white/5 px-2 py-0.5">{count}</span>}</button>
- return <div className={theme==='dark'?'min-h-screen bg-[#0b0d18] text-white':'min-h-screen bg-[#171727] text-white'}>
+ return <div className="min-h-screen bg-[#0b0d18] text-white">
  <div className="flex min-h-screen">
  <aside className="hidden lg:flex sticky top-0 h-screen w-[264px] shrink-0 flex-col border-r border-white/10 bg-[#101321] px-4 py-5">
  <button onClick={()=>navigate('overview')} className="flex items-center gap-3 px-2 mb-9 text-left"><div className="size-11 rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center shadow-[0_0_22px_#7366ff55]"><Sparkles size={23}/></div><span><strong className="block text-xl tracking-tight">MotionLab</strong><span className="text-xs text-slate-400">Animation playground</span></span></button>
