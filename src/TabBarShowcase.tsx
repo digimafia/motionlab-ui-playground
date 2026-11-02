@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Home, Search, Heart, UserRound, RotateCcw } from 'lucide-react'
 
@@ -6,7 +6,7 @@ type Tab = 0|1|2|3
 const icons=[Home,Search,Heart,UserRound]
 const names=['Home','Search','Likes','Profile']
 const spring={type:'spring' as const,stiffness:420,damping:28}
-function Panel({index,title,description,children}:{index:number;title:string;description:string;children:React.ReactNode}){
+function Panel({index,title,description,children}:{index:number;title:string;description:string;children:ReactNode}){
  return <article className="rounded-[26px] border border-[#373048] bg-[#15121f] p-5 min-h-[300px] flex flex-col">
  <div className="flex-1 min-h-[172px] flex items-center justify-center overflow-hidden py-3">{children}</div>
  <div className="flex items-baseline gap-3 mb-2"><span className="text-indigo-300 font-bold">{String(index).padStart(2,'0')}</span><h3 className="text-xl font-bold">{title}</h3></div>
