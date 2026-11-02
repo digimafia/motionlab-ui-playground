@@ -12,10 +12,10 @@ const cards = [
   { id: 'Garden', gradient: 'linear-gradient(150deg,#065f46,#3dd6a0)', emoji: '🌼' }
 ]
 function Panel({number,title,description,children}:{number:number;title:string;description:string;children:React.ReactNode}){
- return <article className="rounded-[26px] border border-[#373048] bg-[#15121f] p-3 sm:p-5 flex flex-col min-h-[260px] sm:min-h-[310px]">
+ return <article className="rounded-[26px] border border-[#373048] bg-[#15121f] p-5 flex flex-col min-h-[310px]">
  <div className="flex-1 flex items-center justify-center py-5">{children}</div>
  <div className="flex items-baseline gap-3 mb-2"><span className="text-indigo-300 font-bold">{String(number).padStart(2,'0')}</span><h3 className="font-bold text-xl text-white">{title}</h3></div>
- <p className="text-xs sm:text-sm text-[#b5aec9] bg-[#0c0b15] rounded-xl p-3 leading-relaxed">{description}</p>
+ <p className="text-sm text-[#b5aec9] bg-[#0c0b15] rounded-xl p-3 leading-relaxed">{description}</p>
  </article>
 }
 export default function CheckboxShowcase(){
@@ -32,7 +32,7 @@ export default function CheckboxShowcase(){
  function reset(){setCircle(false);setTasks([]);setSelected(['Photos','Videos']);setShip('Standard');setCard('Ocean');setInk(false)}
  return <section id="checkbox-gallery" className="max-w-7xl mx-auto px-4 md:px-8 pb-14">
  <div className="flex flex-wrap gap-4 justify-between items-end mb-6"><div><div className="text-xs tracking-[.3em] uppercase text-indigo-400 mb-2">Interactive collection / Part 01</div><h2 className="text-3xl md:text-5xl font-extrabold text-white">Checkbox <span className="text-indigo-400">Animations</span></h2><p className="text-[#a9a3bf] mt-2">Six working UI interactions inspired by your reference. Tap each one to test.</p></div><button onClick={reset} className="chip flex items-center gap-2 text-sm"><RotateCcw size={15}/> Reset all</button></div>
- <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
+ <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5">
  <Panel number={1} title="Circle to Check" description="Tap: the glowing ring unwinds and morphs into a check.">
  <button onClick={()=>setCircle(!circle)} className="flex items-center gap-5 text-left w-full max-w-xs" aria-label="Toggle watering task" aria-pressed={circle}>
  <svg width="76" height="76" viewBox="0 0 76 76" className="shrink-0 overflow-visible"><defs><linearGradient id="circle-ink" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#aa56ff"/><stop offset="1" stopColor="#15bafc"/></linearGradient></defs><motion.circle cx="38" cy="38" r="24" fill="none" stroke="url(#circle-ink)" strokeWidth="6" strokeLinecap="round" animate={{pathLength:circle?0:1,opacity:circle?0:1,rotate:circle?180:0}} transition={{duration:.45}} style={{originX:'50%',originY:'50%'}}/><motion.path d="M18 38 L32 50 L59 24" fill="none" stroke="url(#circle-ink)" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" initial={false} animate={{pathLength:circle?1:0,opacity:circle?1:0}} transition={{duration:.5,delay:circle?.13:0}}/></svg>
